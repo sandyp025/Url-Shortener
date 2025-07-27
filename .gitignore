@@ -31,6 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+.DS_Store
 # Ignore real app config
 src/main/resources/application.properties
 
