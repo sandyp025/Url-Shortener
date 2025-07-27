@@ -33,4 +33,4 @@ build/
 .vscode/
 # Ignore real app config
 src/main/resources/application.properties
-src/main/resources/application.properties
+
