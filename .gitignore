@@ -1,10 +1,11 @@
+### Backend (Java/Spring) ###
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# STS
 .apt_generated
 .classpath
 .factorypath
@@ -13,13 +14,13 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
+# IntelliJ
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,8 +30,19 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
-# Ignore real app config
-src/main/resources/application.properties
+### Frontend (Vite/React in Url-Shortener-Frontend/) ###
+Url-Shortener-Frontend/node_modules/
+Url-Shortener-Frontend/dist/
+Url-Shortener-Frontend/.env
+Url-Shortener-Frontend/.output/
+Url-Shortener-Frontend/.vitepress/
 
+### Common ###
+.vscode/
+.DS_Store
+
+# Real app config
+src/main/resources/application.properties
+# macOS
+.DS_Store
+**/.DS_Store
