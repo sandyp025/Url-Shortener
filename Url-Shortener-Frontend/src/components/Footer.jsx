@@ -11,7 +11,7 @@ const Footer = () => {
         </div>
 
         <p className="mt-4 lg:mt-0">
-          &copy; 2024 Linklytics. All rights reserved.
+          &copy; 2025 Linklytics. All rights reserved.
         </p>
 
         <div className="flex space-x-6 mt-4 lg:mt-0">
