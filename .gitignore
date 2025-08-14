@@ -46,3 +46,7 @@ src/main/resources/application.properties
 # macOS
 .DS_Store
 **/.DS_Store
+
+.env
+.env.local
+.env.prod
