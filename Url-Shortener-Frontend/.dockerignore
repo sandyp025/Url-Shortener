@@ -1,0 +1,31 @@
+# Ignore Git and IDE files
+.git
+.gitignore
+.vscode
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Ignore build outputs
+target
+build
+out
+
+# Ignore OS-specific files
+.DS_Store
+**/.DS_Store
+
+# Ignore environment files
+.env
+.env.local
+.env.prod
+
+# Ignore frontend dependencies (if present in build context)
+Url-Shortener-Frontend/node_modules
+Url-Shortener-Frontend/dist
+Url-Shortener-Frontend/.vitepress
+
+# Ignore Maven wrapper logs/cache
+.mvn
+mvnw.cmd
