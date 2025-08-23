@@ -94,9 +94,6 @@ Client Layer (React) → API Gateway (Spring Boot) → Service Layer → Data Ac
 ### Analytics Capabilities
 - Total click counts per URL
 - Time-series click data (daily, weekly, monthly)
-- Geographic analytics (future implementation)
-- Referrer tracking (future implementation)
-- Device and browser analytics (future implementation)
 
 ## Project Structure
 
@@ -488,7 +485,6 @@ The application uses JWT (JSON Web Tokens) for stateless authentication:
 - Regular database maintenance and vacuuming
 
 ### Caching Strategy
-- Redis caching for frequently accessed URLs (future implementation)
 - HTTP caching headers for static assets
 - Browser caching for API responses where appropriate
 
@@ -498,40 +494,6 @@ The application uses JWT (JSON Web Tokens) for stateless authentication:
 - Async processing for analytics events
 - Database connection pooling
 
-## Error Handling
-
-### HTTP Status Codes
-- `200 OK` - Successful request
-- `201 Created` - Resource created successfully
-- `400 Bad Request` - Invalid input data
-- `401 Unauthorized` - Authentication required
-- `403 Forbidden` - Insufficient permissions
-- `404 Not Found` - Resource not found
-- `429 Too Many Requests` - Rate limit exceeded
-- `500 Internal Server Error` - Server-side error
-
-### Structured Error Responses
-```json
-{
-  "timestamp": "2023-11-15T10:00:00.000Z",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Invalid URL format",
-  "path": "/api/urls/shorten",
-  "details": [
-    {
-      "field": "originalUrl",
-      "message": "Must be a valid URL"
-    }
-  ]
-}
-```
-
-### Custom Exceptions
-- `ResourceNotFoundException` - 404 errors
-- `ValidationException` - 400 errors with details
-- `AuthenticationException` - 401 errors
-- `RateLimitException` - 429 errors
 
 ## Testing
 
@@ -603,3 +565,21 @@ For support, please open an issue on GitHub or contact the maintainers at the re
 - Vite team for the fast build tool
 - Tailwind CSS for the utility-first CSS framework
 - NeonDB for the serverless PostgreSQL offering
+
+---
+
+## **📌 Future Improvements**
+
+* Custom aliases for short URLs.
+* Expiration dates for links.
+* QR code generation.
+
+## 🤝 Contributing
+Contributions are welcome! Please fork the repo and submit a pull request.
+
+
+## 📬 Contact
+Developed by [Sandip Mandal](https://github.com/sandyp025) – feel free to reach out!
+
+
+---
