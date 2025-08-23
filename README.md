@@ -1,10 +1,16 @@
 # Linklytics - Advanced URL Shortener
 
+
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![React](https://img.shields.io/badge/frontend-React-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/build-Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/style-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Spring Boot](https://img.shields.io/badge/backend-Spring%20Boot-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Docker](https://img.shields.io/badge/container-Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Netlify](https://img.shields.io/badge/deployed%20on-Netlify-00C7B7?logo=netlify&logoColor=white)](https://www.netlify.com/)
+[![Render](https://img.shields.io/badge/deployed%20on-Render-46E3B7?logo=render&logoColor=white)](https://render.com/)
+
 
 ## Table of Contents
 - [Overview](#overview)
@@ -88,9 +94,6 @@ Client Layer (React) → API Gateway (Spring Boot) → Service Layer → Data Ac
 ### Analytics Capabilities
 - Total click counts per URL
 - Time-series click data (daily, weekly, monthly)
-- Geographic analytics (future implementation)
-- Referrer tracking (future implementation)
-- Device and browser analytics (future implementation)
 
 ## Project Structure
 
@@ -482,7 +485,6 @@ The application uses JWT (JSON Web Tokens) for stateless authentication:
 - Regular database maintenance and vacuuming
 
 ### Caching Strategy
-- Redis caching for frequently accessed URLs (future implementation)
 - HTTP caching headers for static assets
 - Browser caching for API responses where appropriate
 
@@ -492,40 +494,6 @@ The application uses JWT (JSON Web Tokens) for stateless authentication:
 - Async processing for analytics events
 - Database connection pooling
 
-## Error Handling
-
-### HTTP Status Codes
-- `200 OK` - Successful request
-- `201 Created` - Resource created successfully
-- `400 Bad Request` - Invalid input data
-- `401 Unauthorized` - Authentication required
-- `403 Forbidden` - Insufficient permissions
-- `404 Not Found` - Resource not found
-- `429 Too Many Requests` - Rate limit exceeded
-- `500 Internal Server Error` - Server-side error
-
-### Structured Error Responses
-```json
-{
-  "timestamp": "2023-11-15T10:00:00.000Z",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Invalid URL format",
-  "path": "/api/urls/shorten",
-  "details": [
-    {
-      "field": "originalUrl",
-      "message": "Must be a valid URL"
-    }
-  ]
-}
-```
-
-### Custom Exceptions
-- `ResourceNotFoundException` - 404 errors
-- `ValidationException` - 400 errors with details
-- `AuthenticationException` - 401 errors
-- `RateLimitException` - 429 errors
 
 ## Testing
 
@@ -597,3 +565,21 @@ For support, please open an issue on GitHub or contact the maintainers at the re
 - Vite team for the fast build tool
 - Tailwind CSS for the utility-first CSS framework
 - NeonDB for the serverless PostgreSQL offering
+
+---
+
+## **📌 Future Improvements**
+
+* Custom aliases for short URLs.
+* Expiration dates for links.
+* QR code generation.
+
+## 🤝 Contributing
+Contributions are welcome! Please fork the repo and submit a pull request.
+
+
+## 📬 Contact
+Developed by [Sandip Mandal](https://github.com/sandyp025) – feel free to reach out!
+
+
+---
