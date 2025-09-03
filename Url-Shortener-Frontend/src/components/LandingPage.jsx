@@ -1,119 +1,244 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, BarChart3, Shield, Zap, Link2, Globe, Sparkles } from "lucide-react";
 
-import Card from "./Card";
 import { useStoreContext } from "../contextApi/ContextApi";
-
-let desc =
-  "Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Linklytics. Track clicks and manage your links seamlessly to enhance your online presence. Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms.";
+import { Button } from "./ui/Button";
+import { GradientCard, GlassCard } from "./ui/GradientCard";
+import { Badge } from "./ui/Badge";
+import { LinkAnalyticsIllustration, NetworkIllustration } from "./ui/ModernIllustration";
+import { cn } from "../lib/utils";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const { token } = useStoreContext();
-  console.log("TOKEN FROM LANDING PAGE: " + token);
 
   const dashBoardNavigateHandler = () => {
-
+    if (token) {
+      navigate('/dashboard');
+    } else {
+      navigate('/register');
+    }
   };
+
+  const features = [
+    {
+      icon: Link2,
+      title: "Simple URL Shortening",
+      desc: "Create short, memorable URLs in seconds with our intuitive interface. No complex setup required."
+    },
+    {
+      icon: BarChart3,
+      title: "Powerful Analytics",
+      desc: "Track clicks, geographical data, and referral sources to optimize your marketing strategies."
+    },
+    {
+      icon: Shield,
+      title: "Enhanced Security",
+      desc: "Advanced encryption and security measures ensure your links and data remain protected."
+    },
+    {
+      icon: Zap,
+      title: "Lightning Fast",
+      desc: "High-performance infrastructure guarantees fast redirects and 99.9% uptime reliability."
+    }
+  ];
+
+  const stats = [
+    { number: "1000+", label: "Links Created" },
+    { number: "500+", label: "Active Users" },
+    { number: "99.9%", label: "Uptime" },
+    { number: "5+", label: "Countries" }
+  ];
+
   return (
-    <div className="min-h-[calc(100vh-64px)]  lg:px-14 sm:px-8 px-4">
-      <div className="lg:flex-row flex-col    lg:py-5   pt-16   lg:gap-10 gap-8 flex justify-between items-center">
-        <div className=" flex-1">
-          <motion.h1
-            initial={{ opacity: 0, y: -80 }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-bold font-roboto text-slate-800 md:text-5xl sm:text-4xl text-3xl   md:leading-[55px] sm:leading-[45px] leading-10 lg:w-full md:w-[70%] w-full"
-          >
-            Linklytics Simplifies URL Shortening For Efficient Sharing.
-          </motion.h1>
-          <p className="text-slate-700 text-sm my-5">
-            Linklytics streamlines the process of URL shortening, making sharing
-            links effortless and efficient. With its user-friendly interface,
-            Linklytics allows you to generate concise, easy-to-share URLs in
-            seconds. Simplify your sharing experience with Linklytics today.
-          </p>
-          <div className="flex items-center gap-3">
-            <motion.button
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              onClick={dashBoardNavigateHandler}
-              className="bg-custom-gradient  w-40 text-white rounded-md  py-2"
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Badge variant="secondary" className="mb-4">
+                  <Sparkles className="w-4 h-4 mr-1" />
+                  New Analytics Dashboard
+                </Badge>
+                
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                  <span className="gradient-text">Clipo</span> Simplifies{" "}
+                  <span className="text-foreground">URL Shortening</span>
+                </h1>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-xl text-muted-foreground leading-relaxed max-w-lg"
+              >
+                Transform long URLs into powerful, trackable links. Built for modern teams who need 
+                reliable link management with advanced analytics.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Button 
+                  size="lg" 
+                  variant="gradient"
+                  onClick={dashBoardNavigateHandler}
+                  className="group"
+                >
+                  {token ? "Go to Dashboard" : "Start Free Trial"}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={() => navigate('/about')}
+                >
+                  Learn More
+                </Button>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+              >
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-2xl font-bold gradient-text">{stat.number}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
             >
-              Manage Links
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              onClick={dashBoardNavigateHandler}
-              className="border-btnColor border w-40 text-btnColor rounded-md  py-2 "
-            >
-              Create Short Link
-            </motion.button>
+              <LinkAnalyticsIllustration className="w-full" />
+            </motion.div>
           </div>
         </div>
-        <div className="   flex-1 flex   justify-center w-full">
-          <motion.img
-            initial={{ opacity: 0 }}
-            whileInView={{
-              opacity: 1,
-            }}
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose <span className="gradient-text">Clipo</span>?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Trusted by individuals and teams at the world's best companies for reliable link management.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <GradientCard className="p-6 h-full">
+                  <div className="flex flex-col items-start space-y-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                      <feature.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold">{feature.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
+                  </div>
+                </GradientCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Network Visualization Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Connect Your Digital <span className="gradient-text">Ecosystem</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Seamlessly integrate with your existing tools and workflows. Our platform scales with your needs.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="sm:w-[480px] w-[400px] object-cover rounded-md"
-            src="/images/img2.png"
-            alt=""
-          />
+            className="flex justify-center"
+          >
+            <NetworkIllustration className="max-w-2xl" />
+          </motion.div>
         </div>
-      </div>
-      <div className="sm:pt-12 pt-7">
-        <motion.p
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-slate-800 font-roboto font-bold lg:w-[60%]  md:w-[70%] sm:w-[80%] mx-auto text-3xl text-center"
-        >
-          Trusted by individuals and teams at the world best companies{" "}
-        </motion.p>
-        <div className="pt-4 pb-7 grid lg:gap-7 gap-4 xl:grid-cols-4  lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-4">
-          <Card
-            title="Simple URL Shortening"
-            desc="Experience the ease of creating short, memorable URLs in just a few clicks. Our intuitive interface and quick setup process ensure you can start shortening URLs without any hassle."
-          />
-          <Card
-            title="Powerful Analytics"
-            desc="Gain insights into your link performance with our comprehensive analytics dashboard. Track clicks, geographical data, and referral sources to optimize your marketing strategies."
-          />
-          <Card
-            title="Enhanced Security"
-            desc="Rest assured with our robust security measures. All shortened URLs are protected with advanced encryption, ensuring your data remains safe and secure."
-          />
-          <Card
-            title="Fast and Reliable"
-            desc="Enjoy lightning-fast redirects and high uptime with our reliable infrastructure. Your shortened URLs will always be available and responsive, ensuring a seamless experience for your users.
-"
-          />
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <GradientCard className="text-center p-12" gradient="from-primary/20 via-accent/20 to-primary/20">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Transform Your Links?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Join thousands of users who trust Clipo for their link management needs.
+                Start creating powerful, trackable links today.
+              </p>
+              <Button 
+                size="xl" 
+                variant="gradient" 
+                onClick={dashBoardNavigateHandler}
+                className="group"
+              >
+                {token ? "Go to Dashboard" : "Get Started Free"}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </GradientCard>
+          </motion.div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
