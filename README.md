@@ -59,7 +59,7 @@
 ![Loginpage View](screenshots/Loginpage-View.png)
 
 ### Homepage View
-![Homepage View](screenshots/Homepage-View.png) 
+![Homepage View](screenshots/Homepage-View.png)
 
 ### Dashboard View
 ![Dashboard View](screenshots/Dashboard-View.png)
