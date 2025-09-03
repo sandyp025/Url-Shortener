@@ -255,7 +255,7 @@ export function AuthForm({ mode = 'login', onModeChange, onSubmit, className }) 
                   <div className="space-y-4">
                     <h2 className="text-3xl font-bold">New Here?</h2>
                     <p className="text-lg opacity-90">
-                      Create an account and discover amazing features of Linklytics
+                      Create an account and discover amazing features of Clipo
                     </p>
                   </div>
                   <Button
@@ -279,7 +279,7 @@ export function AuthForm({ mode = 'login', onModeChange, onSubmit, className }) 
                   <div className="space-y-4">
                     <h2 className="text-3xl font-bold">Welcome Back!</h2>
                     <p className="text-lg opacity-90">
-                      Sign in to continue your journey with Linklytics
+                      Sign in to continue your journey with Clipo
                     </p>
                   </div>
                   <Button

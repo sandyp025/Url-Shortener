@@ -20,7 +20,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="system" storageKey="linklytics-theme">
+      <ThemeProvider defaultTheme="system" storageKey="Clipo-theme">
         <QueryClientProvider client={queryClient}>
           <Router>
             <div className="min-h-screen bg-hero-gradient">

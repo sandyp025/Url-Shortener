@@ -10,7 +10,7 @@ export const useTheme = () => {
   return context
 }
 
-export const ThemeProvider = ({ children, defaultTheme = 'system', storageKey = 'linklytics-theme' }) => {
+export const ThemeProvider = ({ children, defaultTheme = 'system', storageKey = 'Clipo-theme' }) => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(storageKey) || defaultTheme

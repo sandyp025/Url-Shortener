@@ -74,7 +74,7 @@ const AboutPage = () => {
     {
       year: "2021",
       title: "Platform Launch",
-      description: "Linklytics was born with a mission to revolutionize URL shortening and analytics."
+      description: "Clipo was born with a mission to revolutionize URL shortening and analytics."
     }
   ];
 
@@ -127,7 +127,7 @@ const AboutPage = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We're building the future of URL shortening with intelligent analytics, 
             enterprise security, and lightning-fast performance. Join thousands of companies 
-            who trust Linklytics for their link management needs.
+            who trust Clipo for their link management needs.
           </p>
         </motion.div>
 

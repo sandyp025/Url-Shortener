@@ -1,5 +1,5 @@
 
-# **Linklytics – Advanced URL Shortener**
+# **Clipo – Advanced URL Shortener**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![React](https://img.shields.io/badge/frontend-React-61DAFB?logo=react&logoColor=white)](https://react.dev/)
