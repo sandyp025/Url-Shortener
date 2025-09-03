@@ -129,7 +129,17 @@ const Footer = () => {
             <span>&copy; 2025 Clipo. All rights reserved.</span>
             <span className="mx-2">•</span>
             <span className="flex items-center">
-              Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> by the Clipo team
+Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> by -
+<a
+  href="https://github.com/sandyp025"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-white font-semibold relative hover:text-cyan-400 transition duration-300
+             after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+             after:bg-cyan-400 after:transition-all after:duration-300 hover:after:w-full"
+>
+  Sandip
+</a>
             </span>
           </div>
           <div className="flex items-center text-sm text-muted-foreground">
