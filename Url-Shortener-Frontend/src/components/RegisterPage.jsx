@@ -1,109 +1,115 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import TextField from './TextField';
-import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/api';
-import toast from 'react-hot-toast';
+import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import api from '../api/api'
+import toast from 'react-hot-toast'
+import { useStoreContext } from '../contextApi/ContextApi'
+import { AuthForm } from './ui/AuthForm'
+import { LoadingSpinner } from './ui/LoadingSpinner'
 
 const RegisterPage = () => {
-    const navigate = useNavigate();
-    const [loader, setLoader] = useState(false);
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const { setToken } = useStoreContext()
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: {errors}
-    } = useForm({
-        defaultValues: {
-            username: "",
-            email: "",
-            password: "",
-        },
-        mode: "onTouched",
-    });
-
-    const registerHandler = async (data) => {
-        setLoader(true);
-        try {
-            const { data: response } = await api.post(
-                "/api/auth/public/register",
-                data
-            );
-            reset();
-            navigate("/login");
-            toast.success("Registeration Successful!")
-        } catch (error) {
-            console.log(error);
-            toast.error("Registeration Failed!")
-        } finally {
-            setLoader(false);
+  const handleAuthSubmit = async (formData, mode) => {
+    setLoading(true)
+    try {
+      const endpoint = mode === 'login' ? '/api/auth/public/login' : '/api/auth/public/register'
+      const { data: response } = await api.post(endpoint, formData)
+      
+      if (response.token) {
+        setToken(response.token)
+        localStorage.setItem('JWT_TOKEN', response.token)
+        toast.success(`${mode === 'login' ? 'Login' : 'Registration'} Successful!`)
+        navigate('/dashboard')
+      } else {
+        toast.success('Registration successful! Please login.')
+        if (mode === 'register') {
+          // You might want to switch to login mode here
         }
-    };
+      }
+    } catch (error) {
+      console.log(error)
+      const message = error.response?.data?.message || `${mode === 'login' ? 'Login' : 'Registration'} Failed!`
+      toast.error(message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleModeChange = (mode) => {
+    // Handle mode change if needed
+    console.log('Mode changed to:', mode)
+  }
 
   return (
-    <div
-        className='min-h-[calc(100vh-64px)] flex justify-center items-center'>
-        <form onSubmit={handleSubmit(registerHandler)}
-            className="sm:w-[450px] w-[360px]  shadow-custom py-8 sm:px-8 px-4 rounded-md">
-            <h1 className="text-center font-serif text-btnColor font-bold lg:text-3xl text-2xl">
-                Register Here
-            </h1>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10">
+        {/* Animated background shapes */}
+        <motion.div
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 120, 0],
+            rotate: [0, -180, -360],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-32 right-32 w-40 h-40 bg-accent/5 rounded-full blur-xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -80, 0],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute bottom-32 left-32 w-36 h-36 bg-primary/5 rounded-full blur-xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/3 right-1/4 w-28 h-28 bg-accent/10 rounded-full blur-lg"
+        />
+        
+        {/* Different grid pattern for register */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_30%,transparent_100%)]" />
+      </div>
 
-            <hr className='mt-2 mb-5 text-black'/>
-
-            <div className="flex flex-col gap-3">
-                <TextField
-                    label="UserName"
-                    required
-                    id="username"
-                    type="text"
-                    message="*Username is required"
-                    placeholder="Type your username"
-                    register={register}
-                    errors={errors}
-                />
-
-                <TextField
-                    label="Email"
-                    required
-                    id="email"
-                    type="email"
-                    message="*Email is required"
-                    placeholder="Type your email"
-                    register={register}
-                    errors={errors}
-                />
-
-                <TextField
-                    label="Password"
-                    required
-                    id="password"
-                    type="password"
-                    message="*Password is required"
-                    placeholder="Type your password"
-                    register={register}
-                    min={6}
-                    errors={errors}
-                />
-            </div>
-
-            <button
-                disabled={loader}
-                type='submit'
-                className='bg-customRed font-semibold text-white  bg-custom-gradient w-full py-2 hover:text-slate-400 transition-colors duration-100 rounded-sm my-3'>
-                {loader ? "Loading..." : "Register"}
-            </button>
-
-            <p className='text-center text-sm text-slate-700 mt-6'>
-                Already have an account? 
-                <Link
-                    className='font-semibold underline hover:text-black'
-                    to="/login">
-                        <span className='text-btnColor'> Login</span>
-                </Link>
-            </p>
-        </form>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-4xl relative"
+      >
+        {loading && (
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 rounded-2xl">
+            <LoadingSpinner size="lg" />
+          </div>
+        )}
+        
+        <AuthForm
+          mode="register"
+          onModeChange={handleModeChange}
+          onSubmit={handleAuthSubmit}
+          className="backdrop-blur-sm bg-card/80 border border-border/50"
+        />
+      </motion.div>
     </div>
   )
 }
