@@ -17,7 +17,7 @@
 > **Frontend:** React (Vite) deployed on Netlify
 > **Backend:** Spring Boot + PostgreSQL (NeonDB) deployed on Render (Dockerized)
 
-🔗 **Live Demo:** [Frontend](https://url-shortnerx.netlify.app/) 
+🔗 **Live Demo:** [Frontend](https://clipo.co.in/) 
 
 ## 📚 Table of Contents
 - [Screenshots](#screenshots)
